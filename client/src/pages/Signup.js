@@ -1,53 +1,75 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
 import { signupRoute } from "../utils/APIRoutes";
-import "react-toastify/dist/ReactToastify.css"
+import "react-toastify/dist/ReactToastify.css";
+import * as THREE from "three";
 import styled from "styled-components";
+import GLOBE from "../../node_modules/vanta/dist/vanta.net.min";
 import axios from "axios";
 
 function Signup() {
+  const [vantaEffect, setVantaEffect] = useState(0);
+  const vantaRef = useRef(null);
+  useEffect(() => {
+    if (!vantaEffect) {
+      setVantaEffect(
+        GLOBE({
+          el: vantaRef.current,
+          THREE,
+          mouseControls: true,
+          touchControls: true,
+          gyroControls: false,
+          minHeight: 100.0,
+          minWidth: 100.0,
+          scale: 0.9,
+          scaleMobile: 1.0,
+          // color: 0x6464e0,
+          color: 0x4e0eff,
+          backgroundColor: 0x30310,
+        })
+      );
+    }
+  }, [vantaEffect]);
+
   const [values, setValues] = useState({
     username: "",
     email: "",
     password: "",
-    confirmpassword: ""
-  })
+    confirmpassword: "",
+  });
 
   const toastOptions = {
     position: "top-right",
     autoClose: 8000,
     pauseOnHover: true,
     draggable: true,
-    theme: "dark"
-  }
+    theme: "dark",
+  };
 
   const navigate = useNavigate();
 
   const handleOnChange = (e) => {
-    setValues({ ...values, [e.target.name]: e.target.value })
-  }
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
 
-  const handleValidation = () => { // frontend validation for proper details
+  const handleValidation = () => {
+    // frontend validation for proper details
     const { password, confirmpassword, username, email } = values;
     if (password.length < 8) {
       toast.error("password must be minimum 6 characters", toastOptions);
       return false;
-    }
-    else if (email === "") {
+    } else if (email === "") {
       toast.error("must enter email id", toastOptions);
       return false;
-    }
-    else if (username === "") {
+    } else if (username === "") {
       toast.error("must enter name", toastOptions);
       return false;
-    }
-    else if (password !== confirmpassword) {
+    } else if (password !== confirmpassword) {
       toast.error("confirmpassword and password did not match", toastOptions);
       return false;
-    }
-    else return true;
-  }
+    } else return true;
+  };
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
@@ -58,37 +80,47 @@ function Signup() {
       const resp = await axios.post(signupRoute, {
         username,
         email,
-        password
+        password,
       });
 
-      const data = resp.data
-      console.log(data)
+      const data = resp.data;
+      console.log(data);
 
       const status = data.status ?? false;
-      const error = data.msg ?? "internal server problem"
+      const error = data.msg ?? "internal server problem";
 
       if (status === false) {
         toast.error(error, toastOptions);
       }
       if (status === true) {
-        sessionStorage.setItem(process.env.REACT_APP_CLIENT_KEY, data.authToken);
+        sessionStorage.setItem(
+          process.env.REACT_APP_CLIENT_KEY,
+          data.authToken
+        );
         const curUser = {
           username: data.username,
           isFenceSet: false,
           isSender: false,
-          isReceiver: false
-        }
-        sessionStorage.setItem('curUser', JSON.stringify(curUser))
-        navigate('/home')
+          isReceiver: false,
+        };
+        sessionStorage.setItem("curUser", JSON.stringify(curUser));
+        navigate("/home");
       }
-
     }
-
   };
 
   return (
     <>
-      <FormContainer>
+      <FormContainer
+        ref={vantaRef}
+        style={{
+          width: "100%",
+          height: "92vh",
+          display: "flex",
+          alignItems: "center",
+          margin: "auto",
+        }}
+      >
         <form
           onSubmit={(e) => {
             handleOnSubmit(e);
@@ -124,9 +156,10 @@ function Signup() {
             onChange={(e) => handleOnChange(e)}
           />
           <button type="submit">Register</button>
-          <span>Already a member?? <Link to='/login'>Login</Link></span>
+          <span>
+            Already a member?? <Link to="/login">Login</Link>
+          </span>
         </form>
-
       </FormContainer>
       <ToastContainer />
     </>
@@ -134,7 +167,7 @@ function Signup() {
 }
 
 const FormContainer = styled.div`
-height: 100vh;
+  height: 100vh;
   width: 100vw;
   display: flex;
   flex-direction: column;

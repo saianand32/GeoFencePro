@@ -1,50 +1,73 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import Logo from '../assets/logo.svg'
+import Logo from "../assets/logo.svg";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"
+import "react-toastify/dist/ReactToastify.css";
+import GLOBE from "../../node_modules/vanta/dist/vanta.net.min";
+import * as THREE from "three";
 import axios from "axios";
 import { loginRoute } from "../utils/APIRoutes";
 
 function Login() {
+  const [vantaEffect, setVantaEffect] = useState(0);
+  const vantaRef = useRef(null);
+  useEffect(() => {
+    if (!vantaEffect) {
+      setVantaEffect(
+        GLOBE({
+          el: vantaRef.current,
+          THREE,
+          mouseControls: true,
+          touchControls: true,
+          gyroControls: false,
+          minHeight: 100.0,
+          minWidth: 100.0,
+          scale: 0.9,
+          scaleMobile: 1.0,
+          // color: 0x6464e0,
+          color: 0x4e0eff,
+          backgroundColor: 0x30310,
+        })
+      );
+    }
+  }, [vantaEffect]);
 
   const [values, setValues] = useState({
     username: "",
     password: "",
-  })
+  });
 
   const toastOptions = {
     position: "top-right",
     autoClose: 8000,
     pauseOnHover: true,
     draggable: true,
-    theme: "dark"
-  }
+    theme: "dark",
+  };
 
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
+    window.scrollTo(0, 0);
+  }, []);
 
   const navigate = useNavigate();
 
   const handleOnChange = (e) => {
-    setValues({ ...values, [e.target.name]: e.target.value })
-  }
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
 
-
-  const handleOnSubmit = async (e) => { 
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
     const { password, username } = values;
 
     const resp = await axios.post(loginRoute, {
       username,
-      password
+      password,
     });
 
-    const data = resp.data
+    const data = resp.data;
     const status = data.status ?? false;
-    const error = data.msg ?? "internal server problem"
+    const error = data.msg ?? "internal server problem";
 
     if (status === false) {
       toast.error(error, toastOptions);
@@ -55,17 +78,25 @@ function Login() {
         username: data.username,
         isFenceSet: false,
         isSender: false,
-        isReceiver: false
-      }
-      sessionStorage.setItem('curUser', JSON.stringify(curUser))
-      navigate('/home')
+        isReceiver: false,
+      };
+      sessionStorage.setItem("curUser", JSON.stringify(curUser));
+      navigate("/home");
     }
-
   };
 
   return (
     <>
-      <FormContainer>
+      <FormContainer
+        ref={vantaRef}
+        style={{
+          width: "100%",
+          height: "92vh",
+          display: "flex",
+          alignItems: "center",
+          margin: "auto",
+        }}
+      >
         <form
           onSubmit={(e) => {
             handleOnSubmit(e);
@@ -89,9 +120,10 @@ function Login() {
             onChange={(e) => handleOnChange(e)}
           />
           <button type="submit">Login</button>
-          <span>Not a member?? <Link to='/signup'>Signup</Link></span>
+          <span>
+            Not a member?? <Link to="/signup">Signup</Link>
+          </span>
         </form>
-
       </FormContainer>
       <ToastContainer />
     </>
@@ -99,7 +131,7 @@ function Login() {
 }
 
 const FormContainer = styled.div`
-height: 100vh;
+  height: 100vh;
   width: 100vw;
   display: flex;
   flex-direction: column;

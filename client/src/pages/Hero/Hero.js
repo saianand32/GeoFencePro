@@ -1,10 +1,10 @@
-import React from 'react'
+import React from "react";
 import { useEffect, useRef, useState } from "react";
-import GLOBE from "../../../node_modules/vanta/dist/vanta.globe.min";
+import GLOBE from "vanta/dist/vanta.globe.min";
 import * as THREE from "three";
+import './Hero.css'
 
-const Banner = () => {
-
+const Landing = () => {
   const [vantaEffect, setVantaEffect] = useState(0);
   const vantaRef = useRef(null);
   useEffect(() => {
@@ -21,7 +21,6 @@ const Banner = () => {
           scale: 0.9,
           scaleMobile: 1.0,
           color: 0x6464e0,
-          // color: 0x4e0eff,
           backgroundColor: 0x30310,
         })
       );
@@ -39,12 +38,22 @@ const Banner = () => {
         margin: "auto",
       }}
     >
-      {/* <h1 style={{ color: "white", zIndex: "1000", marginTop: "-80px" }}>
-          GeoFencing Pro
-        </h1> */}
+      <div class="row">
+        <div class="left-column">
+          <h2 class="left-heading">
+            <span>Welcome</span> to GeoFence<span>PRO</span>
+          </h2>
+          <p class="left-paragraph">
+            Geofencing technology has revolutionized the way we interact with
+            our surroundings, providing a powerful tool to stay safe and secure
+            in an increasingly dynamic world.
+          </p>
+          <button class="btn success">Get Started</button>
+          <button class="btn info">Live Demo</button>
+        </div>
+      </div>
     </div>
+  );
+};
 
-  )
-}
-
-export default Banner
+export default Landing;

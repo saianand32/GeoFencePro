@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useEffect } from "react";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import Landing from "./pages/Landing/Landing";
+import Hero from "./pages/Hero/Hero";
 import {
   HomeRoute,
   LoginSignupRoute,
@@ -79,7 +79,7 @@ function App() {
         />
 
         <Route 
-          path="/" element={<Landing />} 
+          path="/" element={<Hero/>} 
         />
 
       </Routes>
