@@ -1,12 +1,14 @@
 import React from "react";
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import GLOBE from "vanta/dist/vanta.globe.min";
 import * as THREE from "three";
-import './Hero.css'
+import "./Hero.css";
 
 const Landing = () => {
   const [vantaEffect, setVantaEffect] = useState(0);
   const vantaRef = useRef(null);
+  const navigate = useNavigate();
   useEffect(() => {
     if (!vantaEffect) {
       setVantaEffect(
@@ -48,7 +50,14 @@ const Landing = () => {
             our surroundings, providing a powerful tool to stay safe and secure
             in an increasingly dynamic world.
           </p>
-          <button class="btn success">Get Started</button>
+          <button
+            class="btn success"
+            onClick={() => {
+              navigate("/login");
+            }}
+          >
+            Get Started
+          </button>
           <button class="btn info">Live Demo</button>
         </div>
       </div>

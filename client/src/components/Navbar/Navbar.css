@@ -111,3 +111,14 @@
       
     }
   }
+
+  .logoutBtn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.2rem;
+  border-radius: 1.5rem;
+  color: #443ce0;
+  border: none;
+  cursor: pointer;
+  }

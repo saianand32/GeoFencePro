@@ -1,11 +1,32 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Navbar.css";
-import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { BiLogOut } from 'react-icons/bi';
 
 function Navbar() {
     const [click, setClick] = useState(false);
     const container = useRef(null)
+    const [shown, setShown] = useState(false)
+    const [username, setUsername] = useState("");
+    const location = useLocation()
+    const navigate = useNavigate()
+
+    useEffect(() => {
+      const curUser = JSON.parse(sessionStorage.getItem('curUser'))??{username:""}
+      if(curUser.username !== "") setShown(true)
+      setUsername(curUser.username)
+      console.log(sessionStorage.getItem('curUser'))
+      
+    }, [location.pathname])
+
+    const handleLogout = () => {
+      const obj={username:null}
+      console.log(obj)
+      sessionStorage.removeItem('curUser');
+      sessionStorage.removeItem(process.env.REACT_APP_CLIENT_KEY);
+      setShown(false)
+      navigate('/login')
+    }
   
   
     const handleClick = () => setClick(!click);
@@ -20,12 +41,13 @@ function Navbar() {
 
           <ul className={click ? "nav-menu active" : "nav-menu"}>
        
-                <Link className="nav-item">
-                 Username
-                </Link>
-                <Link to ='/login' className="nav-item">
-                Login
-                </Link>
+                <div className="nav-item">
+                 {username}
+                </div>
+                <div  onClick={handleLogout} className="logoutBtn" style={{display:`${shown?"":"none"}`}}>
+                 <BiLogOut/>
+                </div>
+                 
                 
           </ul>
           <div className="nav-icon" onClick={handleClick}>

@@ -26,7 +26,6 @@
 }
 
 .left-column {
-    /* background-color:#fff; */
     margin-left: 5rem;
     float: left;
     width: 50%;
@@ -35,9 +34,7 @@
     padding-top: 8%;
 }
 
-/* Create two equal columns that floats next to each other */
 .right-column {
-    /* background-image:url('https://images.unsplash.com/photo-1520333789090-1afc82db536a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2102&q=80'); */
     object-fit: cover;
     background-position: 50% 50%;
     float: left;
@@ -46,7 +43,6 @@
     align-items: center;
     vertical-align: center;
     height: 100%;
-    /* Should be removed. Only for demonstration */
 }
 
 /* Clear floats after the columns */
