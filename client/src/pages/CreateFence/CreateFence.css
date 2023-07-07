@@ -1,0 +1,39 @@
+/* style.css */
+
+.fence-create-enclose{
+    height: 90vh;
+    background-color: #030310;
+    text-align: center;
+}
+.create-fence-container {
+    text-align: center;
+    margin-left: 7%;
+  }
+  
+  .create-fence-title {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: white;
+  }
+  
+  .create-fence-map {
+    height: 60vh;
+    width: 86vw;
+    border: 6px solid #443ce0;
+    border-radius: 10px;
+  }
+  
+  .create-fence-button {
+    background-color: #443ce0;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 16px;
+    width: 25%;
+    height: 5%;
+  }
+  

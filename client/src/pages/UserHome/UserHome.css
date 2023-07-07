@@ -1,0 +1,99 @@
+.homeContainer{
+        width: 100%;
+        min-height: 60vh;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+}
+
+.homeContainer h1{
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 800;
+    color: #f8f8f8;
+    font-size: 3.15rem;
+    align-items: center;
+    text-align: center;
+}
+
+.homeContainer h1 span {
+    color: #443ce0;
+}
+
+.home-left-column{
+    min-width: 450px;
+    width: 50%;
+}
+.home-left-column img{
+    width: 50vw;
+    height: 50vh;
+}
+
+
+.home-btn {
+    width: 200px;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    font-size: 19px;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-block;
+    margin-top: 20px;
+    margin-right: 10px;
+    border-radius: 0.375rem;
+    border: none;
+}
+
+.home-success {
+    background-color: #443ce0;
+    color: white;
+    margin-right: 20px;
+}
+
+.home-success:hover {
+    background-color: #5851e7;
+    box-shadow: 2px 4px 6px 8px rgb(79 70 229/0.10);
+}
+
+.home-info {
+    background-color: #e9e3e3;
+    color: #443ce0;
+}
+
+.home-info:hover {
+    background-color: #fff;
+    color: #443ce0;
+    box-shadow: 2px 4px 6px 8px #dddddd40;
+}
+
+.astroLottie{
+    height: 200px;
+    width: 200px;
+}
+
+.home-right-heading {
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 900;
+    color: #f8f8f8;
+    font-size: 3.15rem;
+}
+
+.home-right-heading span {
+    color: #443ce0;
+}
+
+.home-right-paragraph {
+    font-family: 'Ubuntu', sans-serif;
+    color: rgb(255, 255, 255);
+    padding-right: 10px;
+    margin-top: 15px;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+}
+
+.home-right-column {
+    float: right;
+    min-width: 400px;
+    width: 50%;
+    padding: 20px;
+    align-items: center;
+}
