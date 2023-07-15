@@ -58,7 +58,7 @@ const Landing = () => {
           >
             Get Started
           </button>
-          <button class="btn info">Live Demo</button>
+          <a href="https://github.com/saianand32/GeoFencePro" target="_blank"><button class="btn info">Github Repo</button></a>
         </div>
       </div>
     </div>

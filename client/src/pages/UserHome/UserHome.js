@@ -60,8 +60,10 @@ function UserHome() {
     >
       <div className="homeContainer" >
         <div className="home-left-column">
-          <Lottie options={defaultOptions} height={450} width={450} />
+          <Lottie options={defaultOptions} height={300} width={450} />
         </div>
+
+        <div className="home-container-content">
         <div class="home-right-column leftelement">
           <h2 class="home-right-heading">
             <span>Choose</span> Your <span>Role</span>
@@ -71,13 +73,16 @@ function UserHome() {
             our surroundings, providing a powerful tool to stay safe and secure
             in an increasingly dynamic world.
           </p>
+        </div>
 
-          <button class="home-btn home-success" onClick={navToSender}>
+        <div>
+        <button class="home-btn home-success" onClick={navToSender}>
             Sender
           </button>
           <button class="home-btn home-info" onClick={navToReceiver}>
             Receiver
           </button>
+        </div>
         </div>
       </div>
     </div>

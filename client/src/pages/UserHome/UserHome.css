@@ -28,6 +28,11 @@
     height: 50vh;
 }
 
+.home-container-content{
+    display: flex;
+    justify-content: space-around;
+}
+
 
 .home-btn {
     width: 200px;

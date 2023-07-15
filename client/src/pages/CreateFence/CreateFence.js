@@ -18,7 +18,7 @@ function CreateFence() {
   const mapStyles = {
     height: "60vh",
     width: "86vw",
-    border: "6px solid rgba(252, 125, 33, 1)",
+    border: "2px solid white",
     borderRadius: "10px"
 
   };

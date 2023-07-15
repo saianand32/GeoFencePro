@@ -38,6 +38,7 @@
     cursor: pointer;
     height: 15%;
     width: 25%;
+    padding: 2px;
     font-size: 20px;
   }
   
@@ -59,6 +60,7 @@
   @media (max-width: 900px) {
     .sender-input {
         font-size: 22px;
+        width: 100%;
     }
 
     .sender-title {
@@ -66,8 +68,9 @@
       }
   
     .sender-button {
-        width: 40%;
+        width: 80%;
         font-size: 15px;
+        padding: 5px;
     }
   }
   
